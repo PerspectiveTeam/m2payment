@@ -1,0 +1,22 @@
+{
+  "name":"codecustom/module-payment",
+  "description": "Magento 2 payments methods",
+  "type": "magento2-module",
+  "version": "1.0.2",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Victor Pankovych",
+      "email": "pankovych.v@gmail.com"
+    }
+  ],
+  "prefer-stable": true,
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "CodeCustom\\Payments\\": ""
+    }
+  }
+}

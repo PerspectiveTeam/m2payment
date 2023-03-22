@@ -1,0 +1,140 @@
+<div if="!isVisible()" class="payment-method payment_half-part payment-group-credit-container"><span class="credit-error-msg" data-bind="text: getErrorMessage()"></span></div>
+<div if="isVisible()" class="payment-method half-part payment-group-credit-container" data-bind="css: {'_active': (getCode() == isChecked())}">
+    <div class="payment-method-title field choice">
+        <input type="radio"
+               class="radio"
+               data-bind="attr: {'id': getCode(), 'name' : 'payment[method]'},
+               value: getCode(), checked: isChecked,
+               click: selectPaymentMethod,
+               visible: isRadioButtonVisible(),"/>
+        <label data-bind="attr: {'for': getCode()}" class="label"><span data-bind="text: getTitle()"></span></label>
+    </div>
+    <div class="payment-method-content paypart-half">
+
+        <fieldset data-bind="attr: {class: 'fieldset payment items', id: 'payment_form_pp_term'}">
+            <div class="field" >
+                <div class="control" >
+                    <input data-validate="{'required-entry':true}" type="hidden" name="payment[pp_term]" class="input-text" value=""
+                           data-bind="attr: {
+                                    id: getCode() + '_pp_term',
+                                    title: $t('Account Owner'),
+                                    placeholder: $t('Email'),
+                                    'data-container': getCode() + '-pp_term',
+                                    'data-validate': JSON.stringify({'required':true})},
+                                    valueUpdate: 'keyup' "/>
+
+                </div>
+            </div>
+        </fieldset>
+        <fieldset data-bind="attr: {class: 'fieldset payment items', id: 'payment_form_pp_price'}">
+            <div class="field _required">
+                <div class="control">
+                    <input data-validate="{'required-entry':true}" type="hidden" name="payment[pp_price]" class="input-text" value=""
+                           data-bind="attr: {
+                                    id: getCode() + '_pp_price',
+                                    'data-container': getCode() + '-pp_price',
+                                    'data-validate': JSON.stringify({'required':true})},
+                                    valueUpdate: 'keyup' "/>
+                </div>
+            </div>
+        </fieldset>
+
+        <!-- ko foreach: getRegion('messages') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!--/ko-->
+        <div class="payment-method-billing-address">
+            <!-- ko foreach: $parent.getRegion(getBillingAddressFormName()) -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+        </div>
+
+        <div class="checkout-agreements-block">
+            <!-- ko foreach: $parent.getRegion('before-place-order') -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+        </div>
+
+
+
+        <div class="checkout-paypart-container credit-pay-container">
+            <div class="item-credit">
+                <div class="fields-slider pay-half-slider">
+                    <div id="half-part-collabsible">
+                        <div class="header-title-slider">
+                            <div class="image-credit">
+                                <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12.5145 20C17.752 20 21.9978 15.5228 21.9978 10C21.9978 4.47715 17.752 0 12.5145 0C7.27706 0 3.03125 4.47715 3.03125 10C3.03125 15.5228 7.27706 20 12.5145 20Z" fill="#FFDE00"/>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M3.30762 18.9371L12.1396 9.99994L3.30762 1.06281C-1.10254 6.10706 -1.10254 13.8929 3.30762 18.9371Z" fill="#6DC928"/>
+                                </svg>
+                            </div>
+                            <label for="amount1"><span data-bind="i18n: 'Pay half part'"></span></label>
+                        </div>
+                        <div class="content">
+                            <div class="control">
+                                <div class="field">
+                                    <div class="mobile_info">
+                                        <label><span data-bind="i18n: 'First installment'"></span></label>
+                                        <div class="static-label">
+                                            <span data-bind="i18n: 'Yes first payment'"></span>
+                                        </div>
+                                    </div>
+                                    <div class="mobile_info">
+                                    <label><span data-bind="i18n: 'Credit term'"></span></label>
+                                    </div>
+                                    <div class="half-part-content">
+                                         <span class="info_credit_dt">
+                                            <i class="payment_count-info">3</i><span data-bind="i18n: 'of payment'"></span>
+                                         </span>
+                                        <select class="option-progres-bar">
+                                        </select>
+                                        <span class="info_credit_dt">
+                                            <i class="month_count-info">3</i><span data-bind="i18n: 'of the month'"></span> 
+                                         </span>
+                                    </div>
+                                    <div class="mobile_info">
+                                    <label> <span data-bind="i18n: 'Monthly payment'"></span></label>
+                                    </div>
+                                    <div class="pricing-half-part temp-part">
+                                        <div class="price-box" data-price="">
+                                            <div class="regular-price">
+                                                <div class="price"></div>
+                                                <div class="month-pay"><span data-bind="i18n: 'grn'"></span>/<span data-bind="i18n: 'month'"></span></div>
+                                            </div>
+                                            <div class="overpayment-price"><span data-bind="i18n: 'no overpayment'"></span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="control">
+                                <div class="field">
+                                    <div class="info-payments-mobile">
+                                        <span>
+                                            <i class="payment_count-info">3</i><span data-bind="i18n: 'of payment'"></span>
+                                            <span>х</span><i class="month_count-info">3</i><span data-bind="i18n: 'of the month'"></span> 
+                                        </span>
+                                        <div class="overpayment-price"><span data-bind="i18n: 'no overpayment'"></span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="actions-toolbar">
+                            <div class="primary">
+                                <button class="action primary checkout"
+                                        type="submit"
+                                        data-bind="
+                        click: placeOrder,
+                        attr: {title: $t('Place Order')},
+                        css: {disabled: !isPlaceOrderActionAllowed()},
+                        enable: (getCode() == isChecked())
+                        "
+                                        disabled>
+                                    <span data-bind="text: $t('Place Order')"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

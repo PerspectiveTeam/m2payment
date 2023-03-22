@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <payment>
+            <liqpay_payment>
+                <active>0</active>
+                <sandbox>1</sandbox>
+                <sandbox_order_surfix>lqp_</sandbox_order_surfix>
+                <model>CodeCustom\Payments\Model\LiqPay</model>
+                <payment_action>authorize_capture</payment_action>
+                <title>LiqPay</title>
+                <private_key backend_model="Magento\Config\Model\Config\Backend\Encrypted"/>
+                <allowspecific>0</allowspecific>
+                <description><![CDATA[Purchase of goods in the store. Order #{order_id}.]]></description>
+                <security_check>1</security_check>
+                <payment_type>pay</payment_type>
+            </liqpay_payment>
+            <parts_payment>
+                <active>0</active>
+                <model>CodeCustom\Payments\Model\PbPartsPayment</model>
+                <order_status>pending</order_status>
+                <title>Parts Payment</title>
+                <checkout_error>Parts Payment is not available for this product</checkout_error>
+                <min_price>0</min_price>
+                <store_id></store_id>
+                <scheme></scheme>
+                <recipient_id></recipient_id>
+                <merchant_type>PP</merchant_type>
+                <payment_type>create</payment_type>
+                <dev_mode>1</dev_mode>
+                <sand_box>1</sand_box>
+                <sand_box_prefix>tst_</sand_box_prefix>
+                <sand_box_store_id>4AAD1369CF734B64B70F</sand_box_store_id>
+                <sand_box_store_password>75bef16bfdce4d0e9c0ad5a19b9940df</sand_box_store_password>
+            </parts_payment>
+            <instant_installment>
+                <active>0</active>
+                <model>CodeCustom\Payments\Model\PbInstantInstallment</model>
+                <order_status>pending</order_status>
+                <title>Instant Installment</title>
+                <checkout_error>Instant is not available for this product</checkout_error>
+                <min_price>0</min_price>
+                <store_id></store_id>
+                <scheme></scheme>
+                <recipient_id></recipient_id>
+                <merchant_type>II</merchant_type>
+                <payment_type>create</payment_type>
+                <dev_mode>1</dev_mode>
+                <sand_box>1</sand_box>
+                <sand_box_prefix>tst_</sand_box_prefix>
+                <sand_box_store_id>4AAD1369CF734B64B70F</sand_box_store_id>
+                <sand_box_store_password>75bef16bfdce4d0e9c0ad5a19b9940df</sand_box_store_password>
+            </instant_installment>
+        </payment>
+        <codecustom>
+            <liqpay_payment>
+                <payment_version>3</payment_version>
+                <hold_action>hold_completion</hold_action>
+                <api_url>https://www.liqpay.ua/api/</api_url>
+                <checkout_url>https://www.liqpay.ua/api/3/checkout</checkout_url>
+                <hold_confirm_order_status>0</hold_confirm_order_status>
+                <order_status_after_hold_confirm>0</order_status_after_hold_confirm>
+            </liqpay_payment>
+            <parts_payment>
+                <api_url>https://payparts2.privatbank.ua/ipp/v2/payment/</api_url>
+                <checkout_url>https://payparts2.privatbank.ua/ipp/v2/payment?token=</checkout_url>
+                <confirm_url></confirm_url>
+                <check_status_url></check_status_url>
+                <hold_confirm_order_status>0</hold_confirm_order_status>
+                <order_status_after_hold_confirm>0</order_status_after_hold_confirm>
+            </parts_payment>
+            <instant_installment>
+                <api_url>https://payparts2.privatbank.ua/ipp/v2/payment/</api_url>
+                <checkout_url>https://payparts2.privatbank.ua/ipp/v2/payment?token=</checkout_url>
+                <confirm_url></confirm_url>
+                <check_status_url></check_status_url>
+                <hold_confirm_order_status>0</hold_confirm_order_status>
+                <order_status_after_hold_confirm>0</order_status_after_hold_confirm>
+            </instant_installment>
+        </codecustom>
+    </default>
+</config>
